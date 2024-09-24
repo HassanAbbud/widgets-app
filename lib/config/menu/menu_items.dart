@@ -10,7 +10,6 @@ class MenuItem {
 
 }
 
-
 const appMenuItems = <MenuItem>[
   MenuItem(
     title: 'Buttons',
