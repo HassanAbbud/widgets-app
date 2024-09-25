@@ -22,18 +22,21 @@ class _ProgressView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+
+    final colors = Theme.of(context).colorScheme;
+
+    return Center(
       child: Column(
         children: [
-          SizedBox(height: 30),
-          Text('Circular progress indicator'),
-          SizedBox(height: 10),
-          CircularProgressIndicator( strokeWidth: 2, backgroundColor: Colors.black45 ),
+          const SizedBox(height: 30),
+          const Text('Circular progress indicator'),
+          const SizedBox(height: 10),
+          CircularProgressIndicator( strokeWidth: 2, backgroundColor: colors.primary ),
           
-          SizedBox(height: 20),
-          Text('Circular and linear controlled'),
-          SizedBox(height: 10),
-          _ControlledProgressIndicator(),
+          const SizedBox(height: 20),
+          const Text('Circular and linear controlled'),
+          const SizedBox(height: 10),
+          const _ControlledProgressIndicator(),
 
         ],
       ),
