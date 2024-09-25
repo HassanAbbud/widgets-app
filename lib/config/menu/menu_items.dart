@@ -45,4 +45,11 @@ const appMenuItems = <MenuItem>[
     link: '/animated', 
     icon: Icons.animation
   ),
+  
+  MenuItem(
+    title: 'Ui controls and Tiles', 
+    subTitle: 'Flutter controllers', 
+    link: '/ui-controls', 
+    icon: Icons.control_camera_outlined
+  ),
 ];
