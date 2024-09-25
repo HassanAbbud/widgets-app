@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +15,53 @@ class InfiniteScrollScreen extends StatefulWidget {
 class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
 
   List<int> imagesIds = [0,1,2,3,4];
+  final ScrollController scrollController = ScrollController();
+  bool isLoading = false;
+  bool isMounted = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    scrollController.addListener(() {
+        if( (scrollController.position.pixels + 500) >= scrollController.position.maxScrollExtent ) {
+          // Load next page
+          loadNextPage();
+        }
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    isMounted = false;
+    super.dispose();
+  }
+
+  
+  void addFiveImages() {
+    final lastId = imagesIds.last;
+
+    imagesIds.addAll(
+      [1,2,3,4,5].map((e) => lastId + e)
+    );
+  }
+  
+  Future loadNextPage() async {
+
+    if ( isLoading ) return;
+    isLoading = true;
+    setState(() {});
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    addFiveImages();
+    isLoading = false;
+
+    if( !isMounted ) return;
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +73,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
         removeBottom: true,
         child: ListView.builder(
           itemCount: imagesIds.length,
+          controller: scrollController,
           itemBuilder: (context, index) {
             return FadeInImage(
               fit: BoxFit.cover,
