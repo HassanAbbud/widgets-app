@@ -12,7 +12,7 @@ const cards = <Map<String,dynamic>>[
 class CardsScreen extends StatelessWidget {
   static const String name = 'cards_screen';
   
-  const CardsScreen({super.key});
+  const CardsScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class CardsScreen extends StatelessWidget {
 }
 
 class _CardsView extends StatelessWidget {
-  const _CardsView({super.key});
+  const _CardsView();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class _CardType1 extends StatelessWidget {
   final String label;
   final double elevation;
 
-  const _CardType1({super.key, required this.label, required this.elevation});
+  const _CardType1({required this.label, required this.elevation});
 
   @override
   Widget build(BuildContext context) {
