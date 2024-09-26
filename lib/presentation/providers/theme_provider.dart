@@ -9,3 +9,17 @@ final darkModeProvider = StateProvider<bool>((ref) => false,);
 final colorListProvider = Provider<List<Color>>((ref) => colorList,);
 
 final selectedIndexColorProvider = StateProvider<int>((ref) => 0);
+
+final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, AppTheme>(
+  (ref) => ThemeNotifier(),
+);
+
+class ThemeNotifier extends StateNotifier<AppTheme> {
+  
+  // STATE = new AppTheme();
+  ThemeNotifier(): super( AppTheme() );
+  
+}
+
+
+
