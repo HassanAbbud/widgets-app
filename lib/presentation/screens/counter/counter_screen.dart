@@ -11,8 +11,6 @@ class CounterScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final int clickCounter = ref.watch(counterProvider);
-    int myCounter = 0;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Counter screen"),
@@ -22,7 +20,7 @@ class CounterScreen extends ConsumerWidget {
         child: Text("Value: $clickCounter", style: Theme.of(context).textTheme.titleLarge), ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () => myCounter++, //change to clickCounter
+        onPressed: () => ref.read(counterProvider.notifier).state++, //change to clickCounter
         child: const Icon(Icons.add)
       )
     );
