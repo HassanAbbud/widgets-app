@@ -23,7 +23,7 @@ class ThemeChangerScreen extends ConsumerWidget {
           )
         ],
       ),
-      body: _ThemeChangerView(),
+      body: const _ThemeChangerView(),
     );
   }
 }
@@ -37,6 +37,7 @@ class _ThemeChangerView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
   final List<Color> colorList = ref.watch(colorListProvider);
+  final int selectedColor= ref.watch(selectedIndexColorProvider);
 
     return ListView.builder(
       itemCount: colorList.length,
@@ -48,8 +49,8 @@ class _ThemeChangerView extends ConsumerWidget {
           subtitle: Text("Color's value: ${color.value}",),
           activeColor: color,
           value: index,
-          groupValue: 5,
-          onChanged: (value) {  },
+          groupValue: selectedColor,
+          onChanged: (value) => ref.read(selectedIndexColorProvider.notifier).state = index,
         );
       },
     );
