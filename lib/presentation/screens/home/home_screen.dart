@@ -6,16 +6,19 @@ import 'package:widgets_app/presentation/widgets/side_menu.dart';
 class HomeScreen extends StatelessWidget {
   static const String name = 'home_screen';
 
-  const HomeScreen();
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: const Text("Flutter + Material 3"),
       ),
       body: const _HomeView(),
-      drawer: SideMenu(),
+      drawer: SideMenu(scaffoldKey: scaffoldKey,),
     );
   }
 }
