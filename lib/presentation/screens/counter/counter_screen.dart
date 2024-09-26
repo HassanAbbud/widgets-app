@@ -12,14 +12,15 @@ class CounterScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final int clickCounter = ref.watch(counterProvider);
-    final bool isDarkModeActive = ref.watch(darkModeProvider);
+    // final bool isDarkModeActive = ref.watch(darkModeProvider);
+    final bool isDarkModeActive = ref.watch(themeNotifierProvider).isDarkMode;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Counter screen"),
       actions: [
         IconButton(
-          onPressed: () => ref.read(darkModeProvider.notifier).state = !isDarkModeActive, 
+          onPressed: () => ref.read(themeNotifierProvider.notifier).toggleDarkMode(), 
           icon: isDarkModeActive ? const Icon(Icons.light_mode_outlined) : const Icon(Icons.dark_mode_outlined),  
         )
       ],
