@@ -3,9 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
 
 class SideMenu extends StatefulWidget {
+
   final GlobalKey<ScaffoldState> scaffoldKey;
 
-  const SideMenu({super.key, required this.scaffoldKey});
+  const SideMenu({
+    super.key, 
+    required this.scaffoldKey
+  });
 
   @override
   State<SideMenu> createState() => _SideMenuState();
@@ -19,33 +23,26 @@ class _SideMenuState extends State<SideMenu> {
   Widget build(BuildContext context) {
 
     final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
+    
 
     return NavigationDrawer(
       selectedIndex: navDrawerIndex,
       onDestinationSelected: (value) {
+
         setState(() {
           navDrawerIndex = value;
         });
 
-        final menuItems = appMenuItems[value];
-        context.push(menuItems.link);
-
+        final menuItem = appMenuItems[value];
+        context.push( menuItem.link );
         widget.scaffoldKey.currentState?.closeDrawer();
+
       },
       children: [
+
         Padding(
           padding: EdgeInsets.fromLTRB(28, hasNotch ? 0 : 20, 16, 10),
           child: const Text('Main'),
-        ),
-        
-        const NavigationDrawerDestination(
-          icon: Icon(Icons.home),
-          label: Text("Home screen")
-        ),
-          
-        const NavigationDrawerDestination(
-          icon: Icon(Icons.add),
-          label: Text("Other screen")
         ),
 
         ...appMenuItems
@@ -66,15 +63,17 @@ class _SideMenuState extends State<SideMenu> {
           child: Text('More options'),
         ),
 
-        ...appMenuItems
+
+         ...appMenuItems
           .sublist(3)
           .map((item) => NavigationDrawerDestination(
             icon: Icon( item.icon ), 
             label: Text( item.title ),
           ),
         ),
-      ],
-    );
+        
 
+      ]
+    );
   }
 }
