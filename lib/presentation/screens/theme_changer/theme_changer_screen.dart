@@ -23,7 +23,35 @@ class ThemeChangerScreen extends ConsumerWidget {
           )
         ],
       ),
-      
+      body: _ThemeChangerView(),
+    );
+  }
+}
+
+class _ThemeChangerView extends ConsumerWidget {  
+  const _ThemeChangerView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+
+  final List<Color> colorList = ref.watch(colorListProvider);
+
+    return ListView.builder(
+      itemCount: colorList.length,
+      itemBuilder: (context, index) {
+        final Color color = colorList[index];
+
+        return RadioListTile( 
+          title: Text("This color", style: TextStyle(color: color),),
+          subtitle: Text("Color's value: ${color.value}",),
+          activeColor: color,
+          value: index,
+          groupValue: 5,
+          onChanged: (value) {  },
+        );
+      },
     );
   }
 }
